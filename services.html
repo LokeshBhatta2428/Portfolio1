@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Services - Lokesh Portfolio</title>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <nav>
+        <div class="nav container">
+            <div class="logo">
+                <span><a href="index.html">Lokesh Bhatta</a></span>
+            </div>
+            <div class="links">
+                <div class="link"><a href="index.html">Home</a></div>
+                <div class="link"><a href="about.html">About</a></div>
+                <div class="link"><a href="skills.html">Skills</a></div>
+                <div class="link"><a href="services.html" class="active">Services</a></div>
+                <div class="link"><a href="projects.html">Projects</a></div>
+                <div class="link"><a href="gallery.html" >Gallery</a></div>
+                <div class="link"><a href="contact.html">Contact</a></div>
+            </div>
+            <i class="fa-solid fa-bars hamburg" onclick="toggleMenu()"></i>
+        </div>
+        <div class="dropdown">
+            <div class="links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="skills.html">Skills</a>
+                <a href="services.html" class="active">Services</a>
+                <a href="projects.html">Projects</a>
+                <a href="gallery.html" >Gallery</a>
+                <a href="contact.html">Contact</a>
+                <i class="fa-solid fa-xmark" onclick="toggleMenu()"></i>
+            </div>
+        </div>
+    </nav>
+
+    <section class="services" id="services">
+        <div class="content">
+            <div class="title"><span>My Services</span></div>
+            <div class="intro">
+                <p>As a cybersecurity professional, I provide comprehensive security services to protect your digital assets. Below are the key services I offer to help secure your systems, networks, and applications.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-box">
+                    <div class="icon">
+                        <i class="fas fa-desktop"></i>
+                    </div>
+                    <div class="service-content">
+                        <div class="topic">Penetration Testing</div>
+                        <p>Penetration testing (pen testing) is a cybersecurity practice where ethical hackers simulate real-world cyberattacks on a system, network, or application to identify vulnerabilities before malicious hackers can exploit them.</p>
+                        <div class="service-details">
+                            <ul>
+                                <li>External and internal network penetration testing</li>
+                                <li>Web application penetration testing</li>
+                                <li>Mobile application security assessment</li>
+                                <li>API security testing</li>
+                                <li>Detailed reporting with remediation suggestions</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="service-box">
+                    <div class="icon">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <div class="service-content">
+                        <div class="topic">Ethical Hacking</div>
+                        <p>Ethical hacking involves authorized attempts to gain unauthorized access to systems, applications, or data to identify security vulnerabilities that could be exploited by malicious actors.</p>
+                        <div class="service-details">
+                            <ul>
+                                <li>Security vulnerability assessments</li>
+                                <li>Social engineering testing</li>
+                                <li>Password strength analysis</li>
+                                <li>Wireless network security assessment</li>
+                                <li>Red team exercises</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="service-box">
+                    <div class="icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="service-content">
+                        <div class="topic">Network Security</div>
+                        <p>Network Security refers to the practices, technologies, and policies designed to protect networks, devices, and data from unauthorized access, cyberattacks, and data breaches.</p>
+                        <div class="service-details">
+                            <ul>
+                                <li>Firewall configuration and management</li>
+                                <li>IDS/IPS implementation and monitoring</li>
+                                <li>VPN setup and security</li>
+                                <li>Network traffic analysis</li>
+                                <li>Security architecture design</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="service-box">
+                    <div class="icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="service-content">
+                        <div class="topic">Web Application Security</div>
+                        <p>Web application security focuses on protecting web applications from various threats and vulnerabilities. It involves implementing security measures to safeguard data, user privacy, and the overall integrity of web applications.</p>
+                        <div class="service-details">
+                            <ul>
+                                <li>OWASP Top 10 vulnerability assessment</li>
+                                <li>Secure coding practices consultation</li>
+                                <li>Authentication and authorization review</li>
+                                <li>Session management security</li>
+                                <li>Input validation and output encoding</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="service-box">
+                    <div class="icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <div class="service-content">
+                        <div class="topic">Digital Forensics & Incident Response</div>
+                        <p>Digital Forensics involves the identification, preservation, analysis, and presentation of digital evidence from computers, networks, and storage devices. Incident Response (IR) is the process of detecting, managing, and recovering from cybersecurity incidents.</p>
+                        <div class="service-details">
+                            <ul>
+                                <li>Incident detection and analysis</li>
+                                <li>Evidence collection and preservation</li>
+                                <li>Malware analysis</li>
+                                <li>Data recovery</li>
+                                <li>Incident response planning</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="service-box">
+                    <div class="icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="service-content">
+                        <div class="topic">Security Training</div>
+                        <p>Security awareness training educates employees and stakeholders about cybersecurity best practices, threats, and prevention measures to create a security-conscious organizational culture.</p>
+                        <div class="service-details">
+                            <ul>
+                                <li>Employee security awareness training</li>
+                                <li>Phishing simulation exercises</li>
+                                <li>Secure coding workshops</li>
+                                <li>Customized security training programs</li>
+                                <li>Technical security training for IT staff</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cta">
+                <h3>Ready to secure your digital assets?</h3>
+                <p>Let's discuss how I can help improve your security posture.</p>
+                <div class="button">
+                    <a href="contact.html"><button>Contact Me</button></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="text">
+            <span>Created By <a href="#">Lokesh</a> | &copy; 2025 All rights reserved</span>
+        </div>
+        <div class="back-to-top">
+            <a href="#"><i class="fas fa-arrow-up"></i></a>
+        </div>
+    </footer>
+</body>
+</html>

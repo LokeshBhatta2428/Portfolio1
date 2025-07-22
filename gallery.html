@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gallery - Lokesh Portfolio</title>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <nav>
+        <div class="nav container">
+            <div class="logo">
+                <span><a href="index.html">Lokesh Bhatta</a></span>
+            </div>
+            <div class="links">
+                <div class="link"><a href="index.html">Home</a></div>
+                <div class="link"><a href="about.html">About</a></div>
+                <div class="link"><a href="skills.html">Skills</a></div>
+                <div class="link"><a href="services.html">Services</a></div>
+                <div class="link"><a href="projects.html">Projects</a></div>
+                <div class="link"><a href="gallery.html" class="active">Gallery</a></div>
+                <div class="link"><a href="contact.html">Contact</a></div>
+            </div>
+            <i class="fa-solid fa-bars hamburg" onclick="toggleMenu()"></i>
+        </div>
+        <div class="dropdown">
+            <div class="links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="skills.html">Skills</a>
+                <a href="services.html">Services</a>
+                <a href="projects.html">Projects</a>
+                <a href="gallery.html" class="active">Gallery</a>
+                <a href="contact.html">Contact</a>
+                <i class="fa-solid fa-xmark" onclick="toggleMenu()"></i>
+            </div>
+        </div>
+    </nav>
+    
+    <section class="gallery">
+        <div class="container">
+            <div class="title">
+                <span>My Gallery</span>
+            </div>
+            <div class="gallery-intro">
+                <p>Welcome to my gallery! Here you can find a collection of photos from my projects, events, and experiences. Click on any image to view it in full size.</p>
+            </div>
+            
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="projects">Projects</button>
+                <button class="filter-btn" data-filter="events">Events</button>
+                <button class="filter-btn" data-filter="travel">Travel</button>
+            </div>
+            
+            <div class="gallery-grid">
+                <!-- Projects -->
+                <div class="gallery-item" data-category="projects">
+                    <div class="gallery-image">
+                        <img src="project1.jpeg" alt="Project 1">
+                        <div class="overlay">
+                            <div class="overlay-content">
+                                <h3>Quantum Computing Project</h3>
+                                <p>March 25, 2025</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="projects">
+                    <div class="gallery-image">
+                        <img src="project2.jpeg" alt="Project 2">
+                        <div class="overlay">
+                            <div class="overlay-content">
+                                <h3>Operating BIOS</h3>
+                                <p>October 29, 2024</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Events -->
+                <div class="gallery-item" data-category="events">
+                    <div class="gallery-image">
+                        <img src="Event1.jpeg" alt="Event 1">
+                        <div class="overlay">
+                            <div class="overlay-content">
+                                <h3>TBC Carrier Fest 24</h3>
+                                <p>November 25, 2024</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="events">
+                    <div class="gallery-image">
+                        <img src="event2.jpeg" alt="Event 2">
+                        <div class="overlay">
+                            <div class="overlay-content">
+                                <h3>TBC Christmas Fest</h3>
+                                <p>December 20, 2024</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Travel -->
+                <div class="gallery-item" data-category="travel">
+                    <div class="gallery-image">
+                        <img src="travel1.jpeg" alt="Travel 1">
+                        <div class="overlay">
+                            <div class="overlay-content">
+                                <h3>Jamacho Hike</h3>
+                                <p>January 10, 2025</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="travel">
+                    <div class="gallery-image">
+                        <img src="Travel2.jpeg" alt="Travel 2">
+                        <div class="overlay">
+                            <div class="overlay-content">
+                                <h3>Godawari, Lalitpur</h3>
+                                <p>November 1, 2024</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="travel">
+                    <div class="gallery-image">
+                        <img src="Travel3.jpeg" alt="Travel 3">
+                        <div class="overlay">
+                            <div class="overlay-content">
+                                <h3>Lakuri Vanjyang</h3>
+                                <p>March 15, 2025</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Lightbox -->
+    <div class="lightbox">
+        <span class="close-lightbox">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+        <div class="lightbox-caption"></div>
+        <span class="lightbox-prev">&lsaquo;</span>
+        <span class="lightbox-next">&rsaquo;</span>
+    </div>
+
+    <footer>
+        <div class="text">
+            <span>Created By <a href="#">Lokesh</a> | &copy; 2025 All rights reserved</span>
+        </div>
+        <div class="back-to-top">
+            <a href="#"><i class="fas fa-arrow-up"></i></a>
+        </div>
+    </footer>
+    
+    <script src="gallery.js"></script>
+</body>
+</html>

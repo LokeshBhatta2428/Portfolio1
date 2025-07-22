@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Projects - Lokesh Portfolio</title>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <nav>
+        <div class="nav container">
+            <div class="logo">
+                <span><a href="index.html">Lokesh Bhatta</a></span>
+            </div>
+            <div class="links">
+                <div class="link"><a href="index.html">Home</a></div>
+                <div class="link"><a href="about.html">About</a></div>
+                <div class="link"><a href="skills.html">Skills</a></div>
+                <div class="link"><a href="services.html">Services</a></div>
+                <div class="link"><a href="projects.html" class="active">Projects</a></div>
+                <div class="link"><a href="gallery.html" >Gallery</a></div>
+                <div class="link"><a href="contact.html">Contact</a></div>
+            </div>
+            <i class="fa-solid fa-bars hamburg" onclick="toggleMenu()"></i>
+        </div>
+        <div class="dropdown">
+            <div class="links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="skills.html">Skills</a>
+                <a href="services.html">Services</a>
+                <a href="projects.html" class="active">Projects</a>
+                <a href="gallery.html" >Gallery</a>
+                <a href="contact.html">Contact</a>
+                <i class="fa-solid fa-xmark" onclick="toggleMenu()"></i>
+            </div>
+        </div>
+    </nav>
+    <section class="projects" id="projects">
+        <div class="content">
+            <div class="title"><span>My Projects</span></div>
+            <div class="intro">
+                <p>Here are some of the key projects I've worked on that demonstrate my skills and expertise in cybersecurity and software development.</p>
+            </div>
+        
+            
+            <div class="projects-container">
+                <div class="project-card" data-category="security">
+                   
+                    <div class="project-info">
+                        <h3>Network Vulnerability Scanner</h3>
+                        <p>A Python-based tool for detecting common network vulnerabilities and security misconfigurations.</p>
+                        <div class="tech-stack">
+                            <span>Python</span>
+                            <span>Scapy</span>
+                            <span>Nmap</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn-small">Live Demo</a>
+                            <a href="#" class="btn-small">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="web">
+                 
+                    <div class="project-info">
+                        <h3>Secure Login Authentication System</h3>
+                        <p>A web-based authentication system implementing industry best practices for secure user authentication.</p>
+                        <div class="tech-stack">
+                            <span>PHP</span>
+                            <span>MySQL</span>
+                            <span>JavaScript</span>
+                            <span>JWT</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn-small">Live Demo</a>
+                            <a href="#" class="btn-small">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="security">
+                    
+                    <div class="project-info">
+                        <h3>File Encryption Utility</h3>
+                        <p>A desktop application for securely encrypting and decrypting files using AES-256 encryption.</p>
+                        <div class="tech-stack">
+                            <span>C++</span>
+                            <span>Qt</span>
+                            <span>OpenSSL</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn-small">Download</a>
+                            <a href="#" class="btn-small">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="app">
+                   
+                    <div class="project-info">
+                        <h3>Secure Password Manager</h3>
+                        <p>A cross-platform application for securely storing and managing passwords with end-to-end encryption.</p>
+                        <div class="tech-stack">
+                            <span>Python</span>
+                            <span>Kivy</span>
+                            <span>SQLite</span>
+                            <span>AES</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn-small">Download</a>
+                            <a href="#" class="btn-small">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="web">
+                    
+                    <div class="project-info">
+                        <h3>Security Monitoring Dashboard</h3>
+                        <p>A web-based dashboard for real-time monitoring of security events and alerts from multiple sources.</p>
+                        <div class="tech-stack">
+                            <span>React</span>
+                            <span>Node.js</span>
+                            <span>MongoDB</span>
+                            <span>Socket.io</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn-small">Live Demo</a>
+                            <a href="#" class="btn-small">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="app">
+                  
+                    <div class="project-info">
+                        <h3>Lightweight VPN Client</h3>
+                        <p>A simple, user-friendly VPN client for secure and private browsing on public networks.</p>
+                        <div class="tech-stack">
+                            <span>C++</span>
+                            <span>OpenVPN</span>
+                            <span>WireGuard</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn-small">Download</a>
+                            <a href="#" class="btn-small">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="github-cta">
+                <h3>Want to see more of my work?</h3>
+                <p>Check out my GitHub profile for additional projects and contributions.</p>
+                <div class="button">
+                    <a href="https://github.com/Lokeshhhh123" target="_blank"><button><i class="fab fa-github"></i> Visit GitHub Profile</button></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="text">
+            <span>Created By <a href="#">Lokesh</a> | &copy; 2025 All rights reserved</span>
+        </div>
+        <div class="back-to-top">
+            <a href="#"><i class="fas fa-arrow-up"></i></a>
+        </div>
+    </footer>
+</body>
+</html>
