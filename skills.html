@@ -10,22 +10,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <nav>
-        <div class="nav container">
-            <div class="logo">
-                <span><a href="index.html">Lokesh Bhatta</a></span>
-            </div>
-            <div class="links">
-                <div class="link"><a href="index.html">Home</a></div>
-                <div class="link"><a href="about.html">About</a></div>
-                <div class="link"><a href="skills.html" class="active">Skills</a></div>
-                <div class="link"><a href="services.html">Services</a></div>
-                <div class="link"><a href="projects.html">Projects</a></div>
-                <div class="link"><a href="gallery.html" >Gallery</a></div>
-                <div class="link"><a href="contact.html">Contact</a></div>
-            </div>
+   <nav>
+    <div class="nav container">
+        <div class="logo">
+            <span><a href="index.html">Lokesh Bhatta</a></span>
         </div>
-    </nav>
+        <div class="links">
+            <div class="link"><a href="index.html">Home</a></div>
+            <div class="link"><a href="about.html">About</a></div>
+            <div class="link"><a href="skills.html" class="active">Skills</a></div>
+            <div class="link"><a href="services.html">Services</a></div>
+            <div class="link"><a href="projects.html">Projects</a></div>
+            <div class="link"><a href="gallery.html">Gallery</a></div>
+            <div class="link"><a href="contact.html">Contact</a></div>
+        </div>
+    </div>
+
+</nav>
 
     <section class="skills" id="skills">
         <div class="content">
@@ -104,56 +105,333 @@
                 </div>
             </div>
             
+            <!-- Enhanced Certifications Section -->
             <div class="certifications">
-                <div class="subtitle"><span>Certifications</span></div>
-                <div class="cert-list">
-                    <div class="cert-item">
-                        <div class="cert-logo"><i class="fas fa-certificate"></i></div>
-                        <div class="cert-info">
-                            <h3>Cisco Introduction To Cyber Security</h3>
-                            <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="2490efa7-0200-4f6b-962b-c6332adc0aa5" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
-                            <img src="intro.png" alt="Cisco Introduction To Cyber Security Certificate">
-                            <p>Completed on Jan 29, 2025</p>
+                <div class="subtitle"><span>Professional Certifications</span></div>
+                <div class="cert-intro">
+                    <p>These certifications validate my expertise in cybersecurity, ethical hacking, and programming. Each represents hands-on knowledge and industry-recognized skills.</p>
+                </div>
+                
+                <!-- Certification Filter Buttons -->
+                <div class="cert-filter-buttons">
+                    <button class="cert-filter-btn active" data-filter="all">All Certifications</button>
+                    <button class="cert-filter-btn" data-filter="cybersecurity">Cybersecurity</button>
+                    <button class="cert-filter-btn" data-filter="programming">Programming</button>
+                    <button class="cert-filter-btn" data-filter="networking">Networking</button>
+                </div>
+                
+                <div class="cert-grid">
+                    <!-- Cybersecurity Certifications -->
+                    <div class="cert-card" data-category="cybersecurity">
+                        <div class="cert-badge">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="cert-content">
+                            <div class="cert-header">
+                                <h3>Cisco Introduction To Cyber Security</h3>
+                                <div class="cert-provider">
+                                    <i class="fas fa-university"></i>
+                                    <span>Cisco Networking Academy</span>
+                                </div>
+                            </div>
+                            <div class="cert-details">
+                                <div class="cert-date">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <span>Completed: January 29, 2025</span>
+                                </div>
+                                <div class="cert-status">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Verified</span>
+                                </div>
+                            </div>
+                            <div class="cert-description">
+                                <p>Fundamental concepts of cybersecurity including threats, vulnerabilities, risk management, and basic security principles.</p>
+                            </div>
+                            <div class="cert-skills">
+                                <span class="skill-tag">Threat Analysis</span>
+                                <span class="skill-tag">Risk Management</span>
+                                <span class="skill-tag">Security Fundamentals</span>
+                            </div>
+                            <div class="cert-actions">
+                                <button class="cert-btn view-cert-btn" data-cert-image="intro.png" data-cert-title="Cisco Introduction To Cyber Security">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    View Certificate
+                                </button>
+                                <a href="https://www.credly.com/badges/2490efa7-0200-4f6b-962b-c6332adc0aa5/public_url" class="cert-btn secondary" target="_blank" rel="noopener noreferrer">
+                                    <i class="fas fa-badge-check"></i>
+                                    Verify
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <div class="cert-item">
-                        <div class="cert-logo"><i class="fas fa-certificate"></i></div>
-                        <div class="cert-info">
-                            <h3>Cisco Certified Ethical Hacker (CEH)</h3>
-                            <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="4dee5f29-5af7-4b31-8682-bbfd6e9c5232" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
-                            <img src="eh.png" alt="Cisco Certified Ethical Hacker Certificate">
-                            <p>Completed on June 15, 2025</p>
+
+                    <div class="cert-card" data-category="cybersecurity">
+                        <div class="cert-badge">
+                            <i class="fas fa-user-secret"></i>
+                        </div>
+                        <div class="cert-content">
+                            <div class="cert-header">
+                                <h3>Cisco Certified Ethical Hacker (CEH)</h3>
+                                <div class="cert-provider">
+                                    <i class="fas fa-university"></i>
+                                    <span>Cisco Networking Academy</span>
+                                </div>
+                            </div>
+                            <div class="cert-details">
+                                <div class="cert-date">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <span>Completed: June 15, 2025</span>
+                                </div>
+                                <div class="cert-status">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Verified</span>
+                                </div>
+                            </div>
+                            <div class="cert-description">
+                                <p>Advanced ethical hacking techniques, penetration testing methodologies, and vulnerability assessment skills.</p>
+                            </div>
+                            <div class="cert-skills">
+                                <span class="skill-tag">Penetration Testing</span>
+                                <span class="skill-tag">Ethical Hacking</span>
+                                <span class="skill-tag">Vulnerability Assessment</span>
+                            </div>
+                            <div class="cert-actions">
+                                <button class="cert-btn view-cert-btn" data-cert-image="EH.png" data-cert-title="Cisco Certified Ethical Hacker (CEH)">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    View Certificate
+                                </button>
+                                <a href="https://www.credly.com/badges/4dee5f29-5af7-4b31-8682-bbfd6e9c5232/public_url" class="cert-btn secondary" target="_blank" rel="noopener noreferrer">
+                                    <i class="fas fa-badge-check"></i>
+                                    Verify
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <div class="cert-item">
-                        <div class="cert-logo"><i class="fas fa-certificate"></i></div>
-                        <div class="cert-info">
-                            <h3>Python Essentials 1</h3>
-                            <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="6735acf5-1862-4efe-beaa-100194311f0f" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
-                            <img src="py.png" alt="Cisco Certified Ethical Hacker Certificate">
-                            <p>Completed on July 19, 2025</p>
+
+                    <div class="cert-card" data-category="cybersecurity">
+                        <div class="cert-badge">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <div class="cert-content">
+                            <div class="cert-header">
+                                <h3>Cyber Threat Intelligence (CTI) 101</h3>
+                                <div class="cert-provider">
+                                    <i class="fas fa-university"></i>
+                                    <span>ARCX Cyber Academy</span>
+                                </div>
+                            </div>
+                            <div class="cert-details">
+                                <div class="cert-date">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <span>Completed: July 24, 2025</span>
+                                </div>
+                                <div class="cert-status">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Verified</span>
+                                </div>
+                            </div>
+                            <div class="cert-description">
+                                <p>Comprehensive understanding of threat intelligence lifecycle, analysis techniques, and intelligence-driven security.</p>
+                            </div>
+                            <div class="cert-skills">
+                                <span class="skill-tag">Threat Intelligence</span>
+                                <span class="skill-tag">Malware Analysis</span>
+                                <span class="skill-tag">IOC Analysis</span>
+                            </div>
+                            <div class="cert-actions">
+                                <button class="cert-btn view-cert-btn" data-cert-image="arcx.jpg" data-cert-title="Cyber Threat Intelligence (CTI) 101">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    View Certificate
+                                </button>
+                                <button class="cert-btn secondary view-cert-btn" data-cert-image="arcxver.png" data-cert-title="CTI 101 Verification">
+                                    <i class="fas fa-badge-check"></i>
+                                    Verify
+                                </button>
+                            </div>
                         </div>
                     </div>
-                     <div class="cert-item">
-                        <div class="cert-logo"><i class="fas fa-certificate"></i></div>
-                        <div class="cert-info">
-                            <h3>Cyber Threat Intelligence (CTI) 101</h3>
-                            <img src="arcx.jpg" alt="Cyber Threat Intelligence Certificate">
-                            <p>Completed on July 24, 2025</p>
+
+                    <!-- Programming Certifications -->
+                    <div class="cert-card" data-category="programming">
+                        <div class="cert-badge">
+                            <i class="fab fa-python"></i>
+                        </div>
+                        <div class="cert-content">
+                            <div class="cert-header">
+                                <h3>Python Essentials 1</h3>
+                                <div class="cert-provider">
+                                    <i class="fas fa-university"></i>
+                                    <span>Cisco Networking Academy</span>
+                                </div>
+                            </div>
+                            <div class="cert-details">
+                                <div class="cert-date">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <span>Completed: July 19, 2025</span>
+                                </div>
+                                <div class="cert-status">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Verified</span>
+                                </div>
+                            </div>
+                            <div class="cert-description">
+                                <p>Foundation in Python programming including syntax, data structures, functions, and object-oriented programming concepts.</p>
+                            </div>
+                            <div class="cert-skills">
+                                <span class="skill-tag">Python Programming</span>
+                                <span class="skill-tag">Data Structures</span>
+                                <span class="skill-tag">OOP Concepts</span>
+                            </div>
+                            <div class="cert-actions">
+                                <button class="cert-btn view-cert-btn" data-cert-image="py.png" data-cert-title="Python Essentials 1">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    View Certificate
+                                </button>
+                                <a href="https://www.credly.com/badges/6735acf5-1862-4efe-beaa-100194311f0f/public_url" class="cert-btn secondary" target="_blank" rel="noopener noreferrer">
+                                    <i class="fas fa-badge-check"></i>
+                                    Verify
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <div class="cert-item">
-                        <div class="cert-logo"><i class="fas fa-certificate"></i></div>
-                        <div class="cert-info">
-                            <h3>Windows Command Mastery for Enthical Hackers</h3>
-                            <img src="WinCom.png" alt="Command Mastery Certificate">
-                            <p>Completed on July 25, 2025</p>
+
+                    <!-- Networking/System Administration -->
+                    <div class="cert-card" data-category="networking">
+                        <div class="cert-badge">
+                            <i class="fab fa-windows"></i>
+                        </div>
+                        <div class="cert-content">
+                            <div class="cert-header">
+                                <h3>Windows Command Mastery for Ethical Hackers</h3>
+                                <div class="cert-provider">
+                                    <i class="fas fa-university"></i>
+                                    <span>Udemy</span>
+                                </div>
+                            </div>
+                            <div class="cert-details">
+                                <div class="cert-date">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <span>Completed: July 25, 2025</span>
+                                </div>
+                                <div class="cert-status">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Verified</span>
+                                </div>
+                            </div>
+                            <div class="cert-description">
+                                <p>Advanced Windows command line techniques for security professionals including PowerShell, batch scripting, and system enumeration.</p>
+                            </div>
+                            <div class="cert-skills">
+                                <span class="skill-tag">Windows CLI</span>
+                                <span class="skill-tag">PowerShell</span>
+                                <span class="skill-tag">System Enumeration</span>
+                            </div>
+                            <div class="cert-actions">
+                                <button class="cert-btn view-cert-btn" data-cert-image="WinCom.png" data-cert-title="Windows Command Mastery for Ethical Hackers">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    View Certificate
+                                </button>
+                                <a href="https://www.udemy.com/certificate/UC-81642ef1-6de6-41a8-af62-ff257c191da0/" class="cert-btn secondary" target="_blank" rel="noopener noreferrer">
+                                    <i class="fas fa-badge-check"></i>
+                                    Verify
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certification Summary Stats -->
+                <div class="cert-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">5</div>
+                        <div class="stat-label">Total Certifications</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">Cybersecurity</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">1</div>
+                        <div class="stat-label">Programming</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">1</div>
+                        <div class="stat-label">Networking</div>
+                    </div>
+                </div>
+
+                <!-- Certification Journey Timeline -->
+                <div class="cert-timeline">
+                    <div class="timeline-header">
+                        <h3>Certification Journey</h3>
+                        <p>My continuous learning path in cybersecurity and technology</p>
+                    </div>
+                    <div class="timeline-container">
+                        <div class="timeline-item">
+                            <div class="timeline-date">Jan 2025</div>
+                            <div class="timeline-content">
+                                <h4>Started Cybersecurity Journey</h4>
+                                <p>Completed Cisco Introduction to Cyber Security</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Jun 2025</div>
+                            <div class="timeline-content">
+                                <h4>Advanced Ethical Hacking</h4>
+                                <p>Achieved Cisco Certified Ethical Hacker certification</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Jul 2025</div>
+                            <div class="timeline-content">
+                                <h4>Programming & Intelligence</h4>
+                                <p>Completed Python Essentials and CTI 101</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item future">
+                            <div class="timeline-date">2025</div>
+                            <div class="timeline-content">
+                                <h4>Future Goals</h4>
+                                <p>CISSP, OSCP, and advanced penetration testing certifications</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Certificate Modal -->
+    <div id="certificateModal" class="certificate-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalCertTitle">Certificate</h3>
+                <button class="modal-close" aria-label="Close modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="cert-image-container">
+                    <div class="loading-spinner">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <span>Loading certificate...</span>
+                    </div>
+                    <img id="modalCertImage" src="" alt="Certificate" style="display: none;">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn download-btn" id="downloadCert">
+                    <i class="fas fa-download"></i>
+                    Download
+                </button>
+                <button class="modal-btn close-btn" id="closeModal">
+                    <i class="fas fa-times"></i>
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
 
     <footer>
         <div class="text">

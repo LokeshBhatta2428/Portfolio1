@@ -3,12 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Contact Me - Lokesh Portfolio</title>
-    <script src="script.js" defer></script>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
 </head>
 <body>
     <nav>
@@ -22,92 +20,233 @@
                 <div class="link"><a href="skills.html">Skills</a></div>
                 <div class="link"><a href="services.html">Services</a></div>
                 <div class="link"><a href="projects.html">Projects</a></div>
-                <div class="link"><a href="gallery.html" >Gallery</a></div>
+                <div class="link"><a href="gallery.html">Gallery</a></div>
                 <div class="link"><a href="contact.html" class="active">Contact</a></div>
             </div>
+         
         </div>
+  
     </nav>
 
     <section class="contact" id="contact">
         <div class="content">
             <div class="title"><span>Contact Me</span></div>
             
+            <div class="contact-intro">
+                <p>Ready to start your next project? Looking for a cybersecurity expert or web developer? Let's connect and discuss how I can help bring your ideas to life.</p>
+            </div>
+            
             <div class="contact-container">
                 <div class="contact-info">
-                    <div class="text">
-                        <div class="topic">Get In Touch</div>
-                        <p>I'm interested in freelance opportunities – especially ambitious or large projects. However, if you have other requests or questions, don't hesitate to reach out using the form.</p>
+                    <div class="contact-card">
+                        <div class="contact-header">
+                            <h2>Get In Touch</h2>
+                            <p>I'm interested in freelance opportunities – especially ambitious or large projects. However, if you have other requests or questions, don't hesitate to reach out using the form.</p>
+                        </div>
                         
                         <div class="contact-details">
                             <div class="contact-item">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <div>
+                                <div class="contact-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="contact-text">
                                     <h3>Location</h3>
                                     <p>Kathmandu, Nepal</p>
+                                    <span class="contact-extra">Available for remote work worldwide</span>
                                 </div>
                             </div>
                             
                             <div class="contact-item">
-                                <i class="fas fa-envelope"></i>
-                                <div>
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="contact-text">
                                     <h3>Email</h3>
                                     <p>lokesh.bhatta2005@gmail.com</p>
+                                    <span class="contact-extra">Response within 24 hours</span>
                                 </div>
                             </div>
                             
                             <div class="contact-item">
-                                <i class="fas fa-phone"></i>
-                                <div>
+                                <div class="contact-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div class="contact-text">
                                     <h3>Phone</h3>
                                     <p>+977 9812679520</p>
+                                    <span class="contact-extra">Available 9 AM - 6 PM NPT</span>
                                 </div>
                             </div>
                         </div>
                         
-                        <div class="social-links">
-                            <a href="https://github.com/LokeshBhatta2428" target="_blank"><i class="fa-brands fa-github"></i></a>
-                            <a href="https://www.facebook.com/lokesh.bhatta2005prb/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
-                            <a href="https://www.linkedin.com/in/lokesh-bhatta-a7b658289/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
-                            <a href="https://x.com/BhattaLokesh321" target="_blank"><i class="fa-brands fa-twitter"></i></a>
-                            <a href="https://www.instagram.com/lokeiiiiii/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                        <div class="social-section">
+                            <h3>Follow Me</h3>
+                            <div class="social-links">
+                                <a href="https://github.com/LokeshBhatta2428" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                                    <i class="fa-brands fa-github"></i>
+                                    <span>GitHub</span>
+                                </a>
+                                <a href="https://www.facebook.com/lokesh.bhatta2005prb/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                                    <i class="fa-brands fa-facebook"></i>
+                                    <span>Facebook</span>
+                                </a>
+                                <a href="https://www.linkedin.com/in/lokesh-bhatta-a7b658289/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                                    <i class="fa-brands fa-linkedin"></i>
+                                    <span>LinkedIn</span>
+                                </a>
+                                <a href="https://x.com/BhattaLokesh321" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                                    <i class="fa-brands fa-twitter"></i>
+                                    <span>Twitter</span>
+                                </a>
+                                <a href="https://www.instagram.com/lokeiiiiii/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                                    <i class="fa-brands fa-instagram"></i>
+                                    <span>Instagram</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="contact-form">
-                    <form id="contactForm" onsubmit="return validateForm()">
+                <div class="contact-form-section">
+                    <div class="form-header">
+                        <h2>Send Message</h2>
+                        <p>Have a project in mind? Fill out the form below and I'll get back to you as soon as possible.</p>
+                    </div>
+                    
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-status" id="formStatus" style="display: none;"></div>
+                        
                         <div class="input-row">
                             <div class="input-group">
-                                <label for="name">Name</label>
-                                <input type="text" id="name" name="name" placeholder="Your Name" required>
+                                <label for="name">Full Name *</label>
+                                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                                <div class="input-icon">
+                                    <i class="fas fa-user"></i>
+                                </div>
                             </div>
                             <div class="input-group">
-                                <label for="email">Email</label>
-                                <input type="email" id="email" name="email" placeholder="Your Email" required>
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                                <div class="input-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number (optional)">
+                                <div class="input-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label for="company">Company/Organization</label>
+                                <input type="text" id="company" name="company" placeholder="Enter company name (optional)">
+                                <div class="input-icon">
+                                    <i class="fas fa-building"></i>
+                                </div>
                             </div>
                         </div>
                         
                         <div class="input-group">
-                            <label for="subject">Subject</label>
-                            <input type="text" id="subject" name="subject" placeholder="Subject" required>
+                            <label for="subject">Subject *</label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Select a subject</option>
+                                <option value="Web Development">Web Development Project</option>
+                                <option value="Cybersecurity">Cybersecurity Consultation</option>
+                                <option value="Freelance">Freelance Opportunity</option>
+                                <option value="Collaboration">Collaboration Proposal</option>
+                                <option value="General Inquiry">General Inquiry</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <div class="input-icon">
+                                <i class="fas fa-tag"></i>
+                            </div>
                         </div>
                         
                         <div class="input-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="6" placeholder="Your Message" required></textarea>
+                            <label for="budget">Project Budget (Optional)</label>
+                            <select id="budget" name="budget">
+                                <option value="">Select budget range</option>
+                                <option value="Under $1,000">Under $1,000</option>
+                                <option value="$1,000 - $5,000">$1,000 - $5,000</option>
+                                <option value="$5,000 - $10,000">$5,000 - $10,000</option>
+                                <option value="$10,000+">$10,000+</option>
+                                <option value="Discuss Later">Discuss Later</option>
+                            </select>
+                            <div class="input-icon">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
                         </div>
                         
-                        <div class="button">
-                            <button type="submit">Send Message</button>
+                        <div class="input-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" rows="6" placeholder="Tell me about your project, timeline, requirements, or any questions you have..." required></textarea>
+                        </div>
+                        
+                        <div class="form-footer">
+                            <div class="privacy-notice">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Your information is secure and will never be shared with third parties.</span>
+                            </div>
+                            <button type="submit" class="submit-btn">
+                                <span class="btn-text">Send Message</span>
+                                <span class="btn-loading" style="display: none;">
+                                    <i class="fas fa-spinner fa-spin"></i> Sending...
+                                </span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
                         </div>
                     </form>
                 </div>
             </div>
             
+            <!-- Quick Contact Options -->
+            <div class="quick-contact">
+                <h3>Quick Contact Options</h3>
+                <div class="quick-contact-grid">
+                    <a href="mailto:lokesh.bhatta2005@gmail.com" class="quick-contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <h4>Direct Email</h4>
+                        <p>Get a response within 24 hours</p>
+                    </a>
+                    <a href="https://wa.me/9779812679520" class="quick-contact-item" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-whatsapp"></i>
+                        <h4>WhatsApp</h4>
+                        <p>Quick chat and instant replies</p>
+                    </a>
+                    <a href="https://www.linkedin.com/in/lokesh-bhatta-a7b658289/" class="quick-contact-item" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-linkedin"></i>
+                        <h4>LinkedIn</h4>
+                        <p>Professional networking</p>
+                    </a>
+                    <a href="tel:+9779812679520" class="quick-contact-item">
+                        <i class="fas fa-phone"></i>
+                        <h4>Phone Call</h4>
+                        <p>Direct conversation</p>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Map Section -->
             <div class="map-container">
-                <h3>Find Me Here</h3>
-                <div class="map">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d56516.27776878412!2d85.30133137286046!3d27.70895889727567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb198a307baabf%3A0xb5137c1bf18db1ea!2sKathmandu%2044600%2C%20Nepal!5e0!3m2!1sen!2s!4v1680105597580!5m2!1sen!2s" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <div class="map-header">
+                    <h3>Find Me Here</h3>
+                    <p>Located in the heart of Kathmandu, Nepal - Available for remote work worldwide</p>
+                </div>
+                <div class="map-wrapper">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d56516.27776878412!2d85.30133137286046!3d27.70895889727567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb198a307baabf%3A0xb5137c1bf18db1ea!2sKathmandu%2044600%2C%20Nepal!5e0!3m2!1sen!2s!4v1680105597580!5m2!1sen!2s" 
+                        width="100%" 
+                        height="400" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Lokesh Bhatta Location - Kathmandu, Nepal">
+                    </iframe>
                 </div>
             </div>
         </div>
@@ -121,5 +260,7 @@
             <a href="#"><i class="fas fa-arrow-up"></i></a>
         </div>
     </footer>
+
+    <script src="script.js" defer></script>
 </body>
 </html>
