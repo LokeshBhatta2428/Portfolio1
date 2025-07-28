@@ -1991,3 +1991,242 @@ function initParticles() {
 
 // Rest of your existing functions remain the same...
 // (initTypewriter, initContactForm, etc.)
+// Fixed Certificate Modal System
+function initCertificateModal() {
+    // Wait for DOM to be fully loaded
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initCertificateModal);
+        return;
+    }
+
+    const modal = document.getElementById('certificateModal');
+    const modalImg = document.getElementById('modalCertImage');
+    const modalTitle = document.getElementById('modalCertTitle');
+    const modalClose = document.querySelector('.modal-close');
+    const modalOverlay = document.querySelector('.modal-overlay');
+    const closeBtn = document.getElementById('closeModal');
+    const downloadBtn = document.getElementById('downloadCert');
+    const loadingSpinner = document.querySelector('.loading-spinner');
+    
+    console.log('Certificate modal elements:', {
+        modal: !!modal,
+        modalImg: !!modalImg,
+        modalTitle: !!modalTitle,
+        loadingSpinner: !!loadingSpinner
+    });
+    
+    if (!modal || !modalImg || !modalTitle) {
+        console.error('Certificate modal elements not found');
+        return;
+    }
+    
+    let currentCertImage = '';
+    let currentCertTitle = '';
+    
+    // Open modal function
+    function openModal(imageSrc, title) {
+        console.log('Opening modal with:', { imageSrc, title });
+        
+        currentCertImage = imageSrc;
+        currentCertTitle = title;
+        
+        modalTitle.textContent = title;
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        
+        // Show loading spinner
+        if (loadingSpinner) {
+            loadingSpinner.style.display = 'flex';
+        }
+        modalImg.style.display = 'none';
+        
+        // Load image
+        const img = new Image();
+        img.onload = function() {
+            console.log('Image loaded successfully');
+            modalImg.src = imageSrc;
+            modalImg.alt = title;
+            modalImg.style.display = 'block';
+            
+            if (loadingSpinner) {
+                loadingSpinner.style.display = 'none';
+            }
+            
+            // Animate modal appearance
+            requestAnimationFrame(() => {
+                modal.classList.add('active');
+            });
+        };
+        
+        img.onerror = function() {
+            console.error('Failed to load certificate image:', imageSrc);
+            if (loadingSpinner) {
+                loadingSpinner.innerHTML = `
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span>Failed to load certificate</span>
+                `;
+            }
+        };
+        
+        img.src = imageSrc;
+    }
+    
+    // Close modal function
+    function closeModal() {
+        console.log('Closing modal');
+        modal.classList.remove('active');
+        
+        setTimeout(() => {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            modalImg.src = '';
+            modalImg.style.display = 'none';
+            
+            if (loadingSpinner) {
+                loadingSpinner.style.display = 'flex';
+                loadingSpinner.innerHTML = `
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <span>Loading certificate...</span>
+                `;
+            }
+        }, 300);
+    }
+    
+    // Download certificate function
+    function downloadCertificate() {
+        if (!currentCertImage) return;
+        
+        const link = document.createElement('a');
+        link.href = currentCertImage;
+        link.download = `${currentCertTitle.replace(/[^a-z0-9]/gi, '_').toLowerCase()}_certificate`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+    
+    // Initialize event listeners for view certificate buttons
+    function initViewCertButtons() {
+        const viewCertBtns = document.querySelectorAll('.view-cert-btn');
+        console.log('Found view certificate buttons:', viewCertBtns.length);
+        
+        viewCertBtns.forEach((btn, index) => {
+            console.log(`Button ${index}:`, {
+                image: btn.getAttribute('data-cert-image'),
+                title: btn.getAttribute('data-cert-title')
+            });
+            
+            // Remove existing event listeners
+            btn.removeEventListener('click', handleViewCertClick);
+            
+            // Add new event listener
+            btn.addEventListener('click', handleViewCertClick);
+        });
+    }
+    
+    // Handle view certificate button click
+    function handleViewCertClick(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const button = e.currentTarget;
+        const imageSrc = button.getAttribute('data-cert-image');
+        const title = button.getAttribute('data-cert-title');
+        
+        console.log('View certificate clicked:', { imageSrc, title, button });
+        
+        if (imageSrc && title) {
+            openModal(imageSrc, title);
+        } else {
+            console.error('Missing certificate data:', { imageSrc, title });
+        }
+    }
+    
+    // Event listeners for closing modal
+    if (modalClose) {
+        modalClose.addEventListener('click', (e) => {
+            e.stopPropagation();
+            closeModal();
+        });
+    }
+    
+    if (closeBtn) {
+        closeBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            closeModal();
+        });
+    }
+    
+    if (downloadBtn) {
+        downloadBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            downloadCertificate();
+        });
+    }
+    
+    // Close modal when clicking overlay
+    if (modalOverlay) {
+        modalOverlay.addEventListener('click', closeModal);
+    }
+    
+    // Close modal when clicking outside content
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+        if (modal && modal.style.display === 'flex') {
+            switch(e.key) {
+                case 'Escape':
+                    closeModal();
+                    break;
+                case 'Enter':
+                    if (e.target === downloadBtn) {
+                        downloadCertificate();
+                    }
+                    break;
+            }
+        }
+    });
+    
+    // Initialize buttons
+    initViewCertButtons();
+    
+    // Re-initialize buttons after dynamic content changes
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.addedNodes.length) {
+                initViewCertButtons();
+            }
+        });
+    });
+    
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
+    
+    console.log('Certificate modal initialized successfully');
+}
+
+// Make sure to call this after DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Your other initializations...
+    initThemeToggle();
+    initMobileMenu();
+    initNavigation();
+    initScrollEffects();
+    initProjectFiltering();
+    initGalleryLightbox();
+    initContactForm();
+    initLoadingAnimations();
+    initCertificationFiltering();
+    
+    // Initialize certificate modal last
+    setTimeout(initCertificateModal, 100);
+    
+    // Initialize particles effect
+    initParticles();
+}); 
