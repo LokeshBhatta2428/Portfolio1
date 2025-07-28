@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <title>My Projects - Lokesh Portfolio</title>
     <script src="script.js" defer></script>
-    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <nav>
@@ -21,143 +21,86 @@
                 <div class="link"><a href="skills.html">Skills</a></div>
                 <div class="link"><a href="services.html">Services</a></div>
                 <div class="link"><a href="projects.html" class="active">Projects</a></div>
-                <div class="link"><a href="gallery.html" >Gallery</a></div>
+                <div class="link"><a href="gallery.html">Gallery</a></div>
                 <div class="link"><a href="contact.html">Contact</a></div>
             </div>
-            <i class="fa-solid fa-bars hamburg" onclick="toggleMenu()"></i>
-        </div>
-        <div class="dropdown">
-            <div class="links">
-                <a href="index.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="skills.html">Skills</a>
-                <a href="services.html">Services</a>
-                <a href="projects.html" class="active">Projects</a>
-                <a href="gallery.html" >Gallery</a>
-                <a href="contact.html">Contact</a>
-                <i class="fa-solid fa-xmark" onclick="toggleMenu()"></i>
-            </div>
+
         </div>
     </nav>
+
     <section class="projects" id="projects">
         <div class="content">
             <div class="title"><span>My Projects</span></div>
             <div class="intro">
-                <p>Here are some of the key projects I've worked on that demonstrate my skills and expertise in cybersecurity and software development.</p>
+                <p style="text-align: center;">Here are some of the key projects I've developed that showcase my programming skills and technical expertise.</p>
+            </div>
+            
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="system">Management Systems</button>
+                <button class="filter-btn" data-filter="finance">Financial</button>
             </div>
         
-            
-            <div class="projects-container">
-                <div class="project-card" data-category="security">
-                   
-                    <div class="project-info">
-                        <h3>Network Vulnerability Scanner</h3>
-                        <p>A Python-based tool for detecting common network vulnerabilities and security misconfigurations.</p>
-                        <div class="tech-stack">
-                            <span>Python</span>
-                            <span>Scapy</span>
-                            <span>Nmap</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="btn-small">Live Demo</a>
-                            <a href="#" class="btn-small">GitHub</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="project-card" data-category="web">
-                 
-                    <div class="project-info">
-                        <h3>Secure Login Authentication System</h3>
-                        <p>A web-based authentication system implementing industry best practices for secure user authentication.</p>
-                        <div class="tech-stack">
-                            <span>PHP</span>
-                            <span>MySQL</span>
-                            <span>JavaScript</span>
-                            <span>JWT</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="btn-small">Live Demo</a>
-                            <a href="#" class="btn-small">GitHub</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="project-card" data-category="security">
-                    
-                    <div class="project-info">
-                        <h3>File Encryption Utility</h3>
-                        <p>A desktop application for securely encrypting and decrypting files using AES-256 encryption.</p>
-                        <div class="tech-stack">
-                            <span>C++</span>
-                            <span>Qt</span>
-                            <span>OpenSSL</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="btn-small">Download</a>
-                            <a href="#" class="btn-small">GitHub</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="project-card" data-category="app">
-                   
-                    <div class="project-info">
-                        <h3>Secure Password Manager</h3>
-                        <p>A cross-platform application for securely storing and managing passwords with end-to-end encryption.</p>
-                        <div class="tech-stack">
-                            <span>Python</span>
-                            <span>Kivy</span>
-                            <span>SQLite</span>
-                            <span>AES</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="btn-small">Download</a>
-                            <a href="#" class="btn-small">GitHub</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="project-card" data-category="web">
-                    
-                    <div class="project-info">
-                        <h3>Security Monitoring Dashboard</h3>
-                        <p>A web-based dashboard for real-time monitoring of security events and alerts from multiple sources.</p>
-                        <div class="tech-stack">
-                            <span>React</span>
-                            <span>Node.js</span>
-                            <span>MongoDB</span>
-                            <span>Socket.io</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="btn-small">Live Demo</a>
-                            <a href="#" class="btn-small">GitHub</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="project-card" data-category="app">
-                  
-                    <div class="project-info">
-                        <h3>Lightweight VPN Client</h3>
-                        <p>A simple, user-friendly VPN client for secure and private browsing on public networks.</p>
-                        <div class="tech-stack">
-                            <span>C++</span>
-                            <span>OpenVPN</span>
-                            <span>WireGuard</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="btn-small">Download</a>
-                            <a href="#" class="btn-small">GitHub</a>
-                        </div>
-                    </div>
-                </div>
+           <div class="projects-container">
+    <div class="project-card" data-category="system">
+        <div class="project-info">
+            <h3>Student Management System</h3>
+            <p>A comprehensive application for educational institutions to manage student data, attendance records, grades, course enrollment, and academic progress. Features include user authentication, role-based access control, and reporting tools.</p>
+            <div class="tech-stack">
+                <div class="tech-badge"><i class="fab fa-java"></i>Java</div>
+                <div class="tech-badge"><i class="fas fa-database"></i>MySQL</div>
+                <div class="tech-badge"><i class="fas fa-window-restore"></i>Swing</div>
+                <div class="tech-badge"><i class="fas fa-plug"></i>JDBC</div>
+                <div class="tech-badge"><i class="fas fa-project-diagram"></i>MVC</div>
             </div>
+            <div class="project-links">
+                <a href="Python Based Student Management System.pdf" class="btn-small" target="_blank"><i class="fas fa-external-link-alt"></i>Project Detail</a>
+                <a href="https://github.com/LokeshBhatta2428/Student-Management-System.git" target="_blank" class="btn-small"><i class="fab fa-github"></i>GitHub</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="project-card" data-category="finance">
+        <div class="project-info">
+            <h3>Billing System</h3>
+            <p>An efficient billing management solution for businesses to create and track customer invoices, manage payments, and generate financial reports. The system includes product catalog management, tax calculation, and receipt generation.</p>
+            <div class="tech-stack">
+                <div class="tech-badge"><i class="fab fa-java"></i>Java</div>
+                <div class="tech-badge"><i class="fas fa-database"></i>Database</div>
+                <div class="tech-badge"><i class="fas fa-desktop"></i>GUI</div>
+                <div class="tech-badge"><i class="fas fa-file-alt"></i>File I/O</div>
+                <div class="tech-badge"><i class="fas fa-calculator"></i>Algorithms</div>
+            </div>
+            <div class="project-links">
+                <a href="Billing System details.pdf" class="btn-small" target="_blank"><i class="fas fa-external-link-alt"></i>Project Detail</a>
+                <a href="https://github.com/LokeshBhatta2428/Billing.git" target="_blank" class="btn-small"><i class="fab fa-github"></i>GitHub</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="project-card" data-category="finance">
+        <div class="project-info">
+            <h3>Invoice System</h3>
+            <p>A specialized application designed for creating professional invoices, tracking payment statuses, and managing client information. Features include customizable invoice templates, automatic calculation, and exportable financial statements.</p>
+            <div class="tech-stack">
+                <div class="tech-badge"><i class="fab fa-java"></i>Java</div>
+                <div class="tech-badge"><i class="fas fa-database"></i>SQL</div>
+                <div class="tech-badge"><i class="fas fa-code"></i>OOP</div>
+                <div class="tech-badge"><i class="fas fa-window-maximize"></i>JFrame</div>
+                <div class="tech-badge"><i class="fas fa-file-pdf"></i>PDF Export</div>
+            </div>
+            <div class="project-links">
+                <a href="Invoice system project detail.pdf" class="btn-small" target="_blank"><i class="fas fa-external-link-alt"></i>Project Detail</a>
+                <a href="https://github.com/LokeshBhatta2428/Invoice-System-.git" target="_blank" class="btn-small"><i class="fab fa-github"></i>GitHub</a>
+            </div>
+        </div>
+    </div>
+</div>
             <div class="github-cta">
                 <h3>Want to see more of my work?</h3>
-                <p>Check out my GitHub profile for additional projects and contributions.</p>
+                <p>Check out my GitHub profile for additional projects and contributions to open source software.</p>
                 <div class="button">
-                    <a href="https://github.com/Lokeshhhh123" target="_blank"><button><i class="fab fa-github"></i> Visit GitHub Profile</button></a>
+                    <a href="https://github.com/LokeshBhatta2428" target="_blank"><button><i class="fab fa-github"></i> Visit GitHub Profile</button></a>
                 </div>
             </div>
         </div>
@@ -170,5 +113,49 @@
             <a href="#"><i class="fas fa-arrow-up"></i></a>
         </div>
     </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Project filtering
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const filter = this.getAttribute('data-filter');
+                    
+                    projectCards.forEach(card => {
+                        if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                            card.style.display = 'flex';
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'translateY(0)';
+                            }, 100);
+                        } else {
+                            card.style.opacity = '0';
+                            card.style.transform = 'translateY(20px)';
+                            setTimeout(() => {
+                                card.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            });
+            
+            // Animate projects on page load
+            projectCards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 100 * index);
+            });
+        });
+    </script>
 </body>
 </html>

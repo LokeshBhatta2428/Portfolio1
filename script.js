@@ -17,9 +17,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     behavior: 'smooth'
                 });
             } else {
-                document.querySelector(targetId).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
             }
         });
     });
@@ -38,32 +41,221 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-  });
-  
-  // Function to toggle the mobile menu
-  function toggleMenu() {
-    const dropdown = document.querySelector('.dropdown');
-    dropdown.classList.toggle('active');
+
+    // Project filtering (if on projects page)
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
     
-    // Store menu state in local storage
-    const isMenuOpen = dropdown.classList.contains('active');
-    localStorage.setItem('menuOpen', isMenuOpen);
+    if(filterButtons.length > 0 && projectCards.length > 0) {
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                const filter = this.getAttribute('data-filter');
+                
+                projectCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'flex';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 100);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+        
+        // Animate projects on page load
+        projectCards.forEach((card, index) => {
+            setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 100 * index);
+        });
+    }
+
+    // Gallery functionality (if on gallery page)
+    const galleryFilterButtons = document.querySelectorAll('.gallery .filter-btn');
+    const galleryItems = document.querySelectorAll('.gallery-item');
     
-    // Toggle body scroll when menu is open/closed
-    document.body.style.overflow = isMenuOpen ? 'hidden' : 'auto';
-  }
-  
-  // Check if menu was open in previous session
-  function checkMenuState() {
+    if(galleryFilterButtons.length > 0 && galleryItems.length > 0) {
+        galleryFilterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                galleryFilterButtons.forEach(btn => btn.classList.remove('active'));
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                const filter = this.getAttribute('data-filter');
+                
+                galleryItems.forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                    
+                    // Add animation
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                    }, 200);
+                });
+            });
+        });
+
+        // Lightbox functionality
+        const lightbox = document.querySelector('.lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxCaption = document.querySelector('.lightbox-caption');
+        const closeLightbox = document.querySelector('.close-lightbox');
+        const prevBtn = document.querySelector('.lightbox-prev');
+        const nextBtn = document.querySelector('.lightbox-next');
+        
+        let currentImageIndex = 0;
+        
+        if(lightbox && lightboxImg && closeLightbox) {
+            // Open lightbox when an image is clicked
+            galleryItems.forEach((item, index) => {
+                item.addEventListener('click', function() {
+                    const img = this.querySelector('img');
+                    const title = this.querySelector('h3')?.textContent || '';
+                    const description = this.querySelector('p')?.textContent || '';
+                    
+                    lightboxImg.src = img.src;
+                    if(lightboxCaption) {
+                        lightboxCaption.innerHTML = `<h3>${title}</h3><p>${description}</p>`;
+                    }
+                    lightbox.style.display = 'block';
+                    
+                    currentImageIndex = index;
+                    updateNavigationButtons();
+                    
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+            
+            // Close lightbox
+            closeLightbox.addEventListener('click', function() {
+                lightbox.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+            
+            // Click outside of image to close lightbox
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
+                    lightbox.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // Navigation buttons
+            if(nextBtn) {
+                nextBtn.addEventListener('click', function() {
+                    currentImageIndex++;
+                    if (currentImageIndex >= galleryItems.length) {
+                        currentImageIndex = 0;
+                    }
+                    updateLightboxContent();
+                });
+            }
+            
+            if(prevBtn) {
+                prevBtn.addEventListener('click', function() {
+                    currentImageIndex--;
+                    if (currentImageIndex < 0) {
+                        currentImageIndex = galleryItems.length - 1;
+                    }
+                    updateLightboxContent();
+                });
+            }
+            
+            // Update lightbox content
+            function updateLightboxContent() {
+                const item = galleryItems[currentImageIndex];
+                
+                if (item.style.display !== 'none') {
+                    const img = item.querySelector('img');
+                    const title = item.querySelector('h3')?.textContent || '';
+                    const description = item.querySelector('p')?.textContent || '';
+                    
+                    lightboxImg.src = img.src;
+                    if(lightboxCaption) {
+                        lightboxCaption.innerHTML = `<h3>${title}</h3><p>${description}</p>`;
+                    }
+                    
+                    updateNavigationButtons();
+                } else {
+                    if (nextBtn) {
+                        nextBtn.click();
+                    } else {
+                        lightbox.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    }
+                }
+            }
+            
+            // Update navigation buttons visibility
+            function updateNavigationButtons() {
+                const visibleItems = Array.from(galleryItems).filter(item => item.style.display !== 'none');
+                
+                if (visibleItems.length <= 1) {
+                    if(prevBtn) prevBtn.style.display = 'none';
+                    if(nextBtn) nextBtn.style.display = 'none';
+                } else {
+                    if(prevBtn) prevBtn.style.display = 'block';
+                    if(nextBtn) nextBtn.style.display = 'block';
+                }
+            }
+            
+            // Keyboard navigation for lightbox
+            document.addEventListener('keydown', function(e) {
+                if (lightbox.style.display === 'block') {
+                    if (e.key === 'ArrowRight' && nextBtn) {
+                        nextBtn.click();
+                    } else if (e.key === 'ArrowLeft' && prevBtn) {
+                        prevBtn.click();
+                    } else if (e.key === 'Escape') {
+                        closeLightbox.click();
+                    }
+                }
+            });
+        }
+    }
+
+    // Contact form functionality
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            validateForm();
+        });
+    }
+});
+
+
+// Check if menu was open in previous session
+function checkMenuState() {
     const wasMenuOpen = localStorage.getItem('menuOpen') === 'true';
-    if(wasMenuOpen) {
-        document.querySelector('.dropdown').classList.add('active');
+    const dropdown = document.querySelector('.dropdown');
+    if(wasMenuOpen && dropdown) {
+        dropdown.classList.add('active');
         document.body.style.overflow = 'hidden';
     }
-  }
-  
-  // Typewriter effect
-  function initTypewriter() {
+}
+
+// Typewriter effect
+function initTypewriter() {
     const textElement = document.querySelector('.typewriter-text');
     if(!textElement) return;
     
@@ -112,10 +304,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Start the typing effect
     setTimeout(type, 1000);
-  }
-  
-  // Highlight active nav based on scroll position
-  function highlightNavOnScroll() {
+}
+
+// Highlight active nav based on scroll position
+function highlightNavOnScroll() {
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll('.links .link a');
     
@@ -137,10 +329,10 @@ document.addEventListener('DOMContentLoaded', function() {
             link.classList.add('active');
         }
     });
-  }
-  
-  // Add CSS animations on scroll
-  window.addEventListener('scroll', function() {
+}
+
+// Add CSS animations on scroll
+window.addEventListener('scroll', function() {
     const animatedElements = document.querySelectorAll('.animate-on-scroll');
     
     animatedElements.forEach(element => {
@@ -151,223 +343,29 @@ document.addEventListener('DOMContentLoaded', function() {
             element.classList.add('animated');
         }
     });
-  });
-  
-  // Form validation for contact form
-  function validateForm() {
-    const name = document.getElementById('name');
-    const email = document.getElementById('email');
-    const message = document.getElementById('message');
-    let isValid = true;
-    
-    // Reset error messages
-    document.querySelectorAll('.error-message').forEach(el => el.remove());
-    
-    // Validate name
-    if(!name.value.trim()) {
-        displayError(name, 'Name is required');
-        isValid = false;
-    }
-    
-    // Validate email
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if(!email.value.trim() || !emailPattern.test(email.value)) {
-        displayError(email, 'Valid email is required');
-        isValid = false;
-    }
-    
-    // Validate message
-    if(!message.value.trim()) {
-        displayError(message, 'Message is required');
-        isValid = false;
-    }
-    
-    return isValid;
-  }
-    
-
-//for gallery part
-document.addEventListener('DOMContentLoaded', function() {
-    // Filter functionality
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const galleryItems = document.querySelectorAll('.gallery-item');
-    
-    filterButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            // Remove active class from all buttons
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            
-            // Add active class to clicked button
-            this.classList.add('active');
-            
-            const filter = this.getAttribute('data-filter');
-            
-            galleryItems.forEach(item => {
-                if (filter === 'all' || item.getAttribute('data-category') === filter) {
-                    item.style.display = 'block';
-                } else {
-                    item.style.display = 'none';
-                }
-                
-                // Add animation
-                setTimeout(() => {
-                    item.style.opacity = '1';
-                }, 200);
-            });
-        });
-    });
-    
-    // Lightbox functionality
-    const lightbox = document.querySelector('.lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    const lightboxCaption = document.querySelector('.lightbox-caption');
-    const closeLightbox = document.querySelector('.close-lightbox');
-    const prevBtn = document.querySelector('.lightbox-prev');
-    const nextBtn = document.querySelector('.lightbox-next');
-    
-    let currentImageIndex = 0;
-    const galleryImages = document.querySelectorAll('.gallery-image img');
-    
-    // Open lightbox when an image is clicked
-    galleryItems.forEach((item, index) => {
-        item.addEventListener('click', function() {
-            const img = this.querySelector('img');
-            const title = this.querySelector('h3')?.textContent || '';
-            const description = this.querySelector('p')?.textContent || '';
-            
-            lightboxImg.src = img.src;
-            lightboxCaption.innerHTML = `<h3>${title}</h3><p>${description}</p>`;
-            lightbox.style.display = 'block';
-            
-            currentImageIndex = index;
-            updateNavigationButtons();
-            
-            document.body.style.overflow = 'hidden'; // Prevent scrolling while lightbox is open
-        });
-    });
-    
-    // Close lightbox
-    closeLightbox.addEventListener('click', function() {
-        lightbox.style.display = 'none';
-        document.body.style.overflow = 'auto'; // Restore scrolling
-    });
-    
-    // Click outside of image to close lightbox
-    lightbox.addEventListener('click', function(e) {
-        if (e.target === lightbox) {
-            lightbox.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-    });
-    
-    // Next image
-    nextBtn.addEventListener('click', function() {
-        currentImageIndex++;
-        if (currentImageIndex >= galleryItems.length) {
-            currentImageIndex = 0;
-        }
-        updateLightboxContent();
-    });
-    
-    // Previous image
-    prevBtn.addEventListener('click', function() {
-        currentImageIndex--;
-        if (currentImageIndex < 0) {
-            currentImageIndex = galleryItems.length - 1;
-        }
-        updateLightboxContent();
-    });
-    
-    // Update lightbox content
-    function updateLightboxContent() {
-        const item = galleryItems[currentImageIndex];
-        
-        if (item.style.display !== 'none') {
-            const img = item.querySelector('img');
-            const title = item.querySelector('h3')?.textContent || '';
-            const description = item.querySelector('p')?.textContent || '';
-            
-            lightboxImg.src = img.src;
-            lightboxCaption.innerHTML = `<h3>${title}</h3><p>${description}</p>`;
-            
-            updateNavigationButtons();
-        } else {
-            // If current image is hidden by filter, find next visible image
-            if (nextBtn.click()) {
-                nextBtn.click();
-            } else {
-                lightbox.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-        }
-    }
-    
-    // Update navigation buttons visibility
-    function updateNavigationButtons() {
-        // Count visible items
-        const visibleItems = Array.from(galleryItems).filter(item => item.style.display !== 'none');
-        
-        if (visibleItems.length <= 1) {
-            prevBtn.style.display = 'none';
-            nextBtn.style.display = 'none';
-        } else {
-            prevBtn.style.display = 'block';
-            nextBtn.style.display = 'block';
-        }
-    }
-    
-    // Keyboard navigation for lightbox
-    document.addEventListener('keydown', function(e) {
-        if (lightbox.style.display === 'block') {
-            if (e.key === 'ArrowRight') {
-                nextBtn.click();
-            } else if (e.key === 'ArrowLeft') {
-                prevBtn.click();
-            } else if (e.key === 'Escape') {
-                closeLightbox.click();
-            }
-        }
-    });
-    
-    // Also update the toggleMenu function if it's not already in your script.js
-    window.toggleMenu = function() {
-        const dropdown = document.querySelector('.dropdown');
-        dropdown.classList.toggle('active');
-    };
-    
-    // Back to top button functionality
-    const backToTopButton = document.querySelector('.back-to-top');
-    
-    window.addEventListener('scroll', function() {
-        if (window.pageYOffset > 300) {
-            backToTopButton.classList.add('active');
-        } else {
-            backToTopButton.classList.remove('active');
-        }
-    });
 });
 
-// Function to toggle mobile menu
-function toggleMenu() {
-    document.querySelector('.dropdown').classList.toggle('active');
-}
-
-// Form validation function
+// Form validation for contact form
 function validateForm() {
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const subject = document.getElementById('subject').value;
-    const message = document.getElementById('message').value;
+    const name = document.getElementById('name');
+    const email = document.getElementById('email');
+    const subject = document.getElementById('subject');
+    const message = document.getElementById('message');
     
     // Basic validation
-    if (name.trim() === '' || email.trim() === '' || subject.trim() === '' || message.trim() === '') {
+    if (!name || !email || !subject || !message) {
+        alert('Please make sure all form fields exist');
+        return false;
+    }
+    
+    if (name.value.trim() === '' || email.value.trim() === '' || subject.value.trim() === '' || message.value.trim() === '') {
         alert('Please fill all fields');
         return false;
     }
     
     // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
+    if (!emailRegex.test(email.value)) {
         alert('Please enter a valid email address');
         return false;
     }
@@ -376,19 +374,22 @@ function validateForm() {
     alert('You have submitted the form');
     
     // Clear form fields after submission
-    document.getElementById('contactForm').reset();
+    const contactForm = document.getElementById('contactForm');
+    if(contactForm) {
+        contactForm.reset();
+    }
     
     // Prevent actual form submission to server
     return false;
 }
 
-// Add event listener to the form when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            validateForm();
-        });
-    }
-});
+function displayError(input, message) {
+    const errorElement = document.createElement('div');
+    errorElement.className = 'error-message';
+    errorElement.style.color = 'red';
+    errorElement.style.fontSize = '14px';
+    errorElement.style.marginTop = '5px';
+    errorElement.textContent = message;
+    
+    input.parentNode.appendChild(errorElement);
+}
