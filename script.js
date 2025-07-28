@@ -1523,3 +1523,471 @@ function validateSingleField(field) {
     
     return isValid;
 }
+// Enhanced navigation with theme toggle and mobile menu
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize all components
+    initThemeToggle();
+    initMobileMenu();
+    initNavigation();
+    initScrollEffects();
+    initProjectFiltering();
+    initGalleryLightbox();
+    initContactForm();
+    initLoadingAnimations();
+    initCertificationFiltering();
+    initCertificateModal();
+    initGalleryFiltering();
+    
+    // Initialize particles effect
+    initParticles();
+    
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            if(targetId === '#') {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            } else {
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }
+        });
+    });
+});
+
+// Theme Toggle Functionality
+function initThemeToggle() {
+    const themeToggle = document.getElementById('themeToggle');
+    const mobileThemeToggle = document.getElementById('mobileThemeToggle');
+    const body = document.body;
+    
+    // Check for saved theme preference or default to light mode
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    setTheme(savedTheme);
+    
+    function setTheme(theme) {
+        if (theme === 'dark') {
+            body.classList.add('dark-mode');
+            updateToggleState(true);
+        } else {
+            body.classList.remove('dark-mode');
+            updateToggleState(false);
+        }
+        localStorage.setItem('theme', theme);
+    }
+    
+    function updateToggleState(isDark) {
+        const toggles = [themeToggle, mobileThemeToggle].filter(Boolean);
+        
+        toggles.forEach(toggle => {
+            const icon = toggle.querySelector('.theme-toggle-icon');
+            
+            if (isDark) {
+                toggle.classList.add('active');
+                icon.className = 'theme-toggle-icon fas fa-moon';
+            } else {
+                toggle.classList.remove('active');
+                icon.className = 'theme-toggle-icon fas fa-sun';
+            }
+        });
+    }
+    
+    function toggleTheme() {
+        const currentTheme = body.classList.contains('dark-mode') ? 'dark' : 'light';
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        // Add transition effect
+        body.style.transition = 'all 0.3s ease';
+        
+        setTheme(newTheme);
+        
+        // Remove transition after animation
+        setTimeout(() => {
+            body.style.transition = '';
+        }, 300);
+        
+        // Show theme change notification
+        showThemeNotification(newTheme);
+    }
+    
+    // Event listeners
+    themeToggle?.addEventListener('click', toggleTheme);
+    mobileThemeToggle?.addEventListener('click', toggleTheme);
+    
+    // Keyboard support
+    [themeToggle, mobileThemeToggle].forEach(toggle => {
+        if (toggle) {
+            toggle.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleTheme();
+                }
+            });
+        }
+    });
+}
+
+// Mobile Menu Functionality
+function initMobileMenu() {
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+    const body = document.body;
+    
+    if (!mobileMenuBtn || !mobileMenu) return;
+    
+    let isMenuOpen = false;
+    
+    function toggleMobileMenu() {
+        isMenuOpen = !isMenuOpen;
+        
+        if (isMenuOpen) {
+            openMobileMenu();
+        } else {
+            closeMobileMenu();
+        }
+    }
+    
+    function openMobileMenu() {
+        mobileMenuBtn.classList.add('active');
+        mobileMenu.classList.add('active');
+        body.style.overflow = 'hidden';
+        
+        // Animate menu links
+        mobileNavLinks.forEach((link, index) => {
+            link.style.opacity = '0';
+            link.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+                link.style.transition = 'all 0.3s ease';
+                link.style.opacity = '1';
+                link.style.transform = 'translateY(0)';
+            }, 100 * (index + 1));
+        });
+        
+        // Set focus to first menu item for accessibility
+        setTimeout(() => {
+            mobileNavLinks[0]?.focus();
+        }, 200);
+    }
+    
+    function closeMobileMenu() {
+        mobileMenuBtn.classList.remove('active');
+        mobileMenu.classList.remove('active');
+        body.style.overflow = '';
+        isMenuOpen = false;
+        
+        // Reset link animations
+        mobileNavLinks.forEach(link => {
+            link.style.transition = '';
+            link.style.opacity = '';
+            link.style.transform = '';
+        });
+    }
+    
+    // Event listeners
+    mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+    
+    // Close menu when clicking on links
+    mobileNavLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            setTimeout(closeMobileMenu, 150);
+        });
+    });
+    
+    // Close menu when clicking outside
+    mobileMenu.addEventListener('click', function(e) {
+        if (e.target === mobileMenu) {
+            closeMobileMenu();
+        }
+    });
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && isMenuOpen) {
+            closeMobileMenu();
+        }
+    });
+    
+    // Handle resize
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768 && isMenuOpen) {
+            closeMobileMenu();
+        }
+    });
+    
+    // Make functions globally accessible
+    window.toggleMobileMenu = toggleMobileMenu;
+}
+
+// Enhanced Navigation
+function initNavigation() {
+    const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    
+    // Set active nav link
+    navLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        if (href === currentPage || (currentPage === '' && href === 'index.html')) {
+            link.classList.add('active');
+        }
+    });
+    
+    // Smooth hover effects
+    navLinks.forEach(link => {
+        link.addEventListener('mouseenter', function() {
+            if (!this.classList.contains('active')) {
+                this.style.transform = 'translateY(-2px)';
+            }
+        });
+        
+        link.addEventListener('mouseleave', function() {
+            if (!this.classList.contains('active')) {
+                this.style.transform = '';
+            }
+        });
+    });
+}
+
+// Enhanced scroll effects with theme awareness
+function initScrollEffects() {
+    const nav = document.querySelector('nav');
+    const backToTopButton = document.querySelector('.back-to-top');
+    
+    function handleNavbarScroll() {
+        const scrolled = window.scrollY > 50;
+        const isDark = document.body.classList.contains('dark-mode');
+        
+        if (scrolled) {
+            nav.style.background = isDark ? 'rgba(15, 23, 42, 0.98)' : 'rgba(248, 250, 252, 0.98)';
+            nav.style.backdropFilter = 'blur(25px)';
+            nav.style.boxShadow = isDark ? 
+                '0 4px 20px rgba(0, 212, 255, 0.25)' : 
+                '0 4px 20px rgba(0, 212, 255, 0.15)';
+        } else {
+            nav.style.background = isDark ? 'rgba(15, 23, 42, 0.95)' : 'rgba(248, 250, 252, 0.95)';
+            nav.style.backdropFilter = 'blur(20px)';
+            nav.style.boxShadow = isDark ? 
+                '0 2px 10px rgba(0, 212, 255, 0.2)' : 
+                '0 2px 10px rgba(0, 212, 255, 0.1)';
+        }
+    }
+    
+    function handleBackToTop() {
+        if (window.scrollY > 300) {
+            backToTopButton?.classList.add('active');
+        } else {
+            backToTopButton?.classList.remove('active');
+        }
+    }
+    
+    function handleParallax() {
+        const hero = document.querySelector('.hero');
+        if (hero) {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.3;
+            hero.style.transform = `translateY(${rate}px)`;
+        }
+    }
+    
+    function highlightActiveNav() {
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        let currentSection = '';
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 200;
+            
+            if (window.pageYOffset >= sectionTop) {
+                currentSection = section.getAttribute('id') || '';
+            }
+        });
+        
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            const href = link.getAttribute('href');
+            if (href === `#${currentSection}` || 
+                (currentSection === '' && href === 'index.html')) {
+                link.classList.add('active');
+            }
+        });
+    }
+    
+    // Throttled scroll handler
+    let ticking = false;
+    function onScroll() {
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                handleNavbarScroll();
+                handleBackToTop();
+                handleParallax();
+                highlightActiveNav();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }
+    
+    window.addEventListener('scroll', onScroll);
+    
+    // Back to top click handler
+    backToTopButton?.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+}
+
+// Theme change notification
+function showThemeNotification(theme) {
+    const notification = document.createElement('div');
+    notification.className = 'theme-notification';
+    notification.innerHTML = `
+        <i class="fas fa-${theme === 'dark' ? 'moon' : 'sun'}"></i>
+        <span>${theme === 'dark' ? 'Dark' : 'Light'} mode activated</span>
+    `;
+    
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: var(--bg-card);
+        color: var(--text-color);
+        padding: 1rem 1.5rem;
+        border-radius: 12px;
+        font-weight: 600;
+        z-index: 10000;
+        box-shadow: var(--shadow-medium);
+        border: 2px solid var(--border-accent);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Animate in
+    requestAnimationFrame(() => {
+        notification.style.transform = 'translateX(0)';
+    });
+    
+    // Remove after delay
+    setTimeout(() => {
+        notification.style.transform = 'translateX(100%)';
+        setTimeout(() => notification.remove(), 300);
+    }, 2000);
+}
+
+// Enhanced particles with theme awareness
+function initParticles() {
+    const canvas = document.createElement('canvas');
+    canvas.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+        opacity: 0.4;
+    `;
+    document.body.appendChild(canvas);
+    
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    
+    const particles = [];
+    const particleCount = Math.min(60, Math.floor(window.innerWidth / 25));
+    
+    class Particle {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.vx = (Math.random() - 0.5) * 0.8;
+            this.vy = (Math.random() - 0.5) * 0.8;
+            this.size = Math.random() * 3 + 1;
+        }
+        
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+            
+            if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+            if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+        }
+        
+        draw() {
+            const isDark = document.body.classList.contains('dark-mode');
+            
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fillStyle = isDark ? '#00d4ff' : '#00a8e8';
+            ctx.fill();
+        }
+    }
+    
+    // Create particles
+    for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+    }
+    
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const isDark = document.body.classList.contains('dark-mode');
+        
+        particles.forEach(particle => {
+            particle.update();
+            particle.draw();
+        });
+        
+        // Draw connections
+        particles.forEach((particle, i) => {
+            particles.slice(i + 1).forEach(otherParticle => {
+                const distance = Math.sqrt(
+                    Math.pow(particle.x - otherParticle.x, 2) +
+                    Math.pow(particle.y - otherParticle.y, 2)
+                );
+                
+                if (distance < 120) {
+                    ctx.beginPath();
+                    ctx.moveTo(particle.x, particle.y);
+                    ctx.lineTo(otherParticle.x, otherParticle.y);
+                    
+                    const opacity = 1 - distance / 120;
+                    ctx.strokeStyle = isDark ? 
+                        `rgba(0, 212, 255, ${opacity * 0.6})` : 
+                        `rgba(0, 168, 232, ${opacity * 0.4})`;
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+                }
+            });
+        });
+        
+        requestAnimationFrame(animate);
+    }
+    
+    animate();
+    
+    // Resize handler
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    });
+}
+
+// Rest of your existing functions remain the same...
+// (initTypewriter, initContactForm, etc.)
