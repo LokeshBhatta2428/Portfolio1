@@ -1,0 +1,2 @@
+ADM001,admin,Administrator,admin@school.edu,admin
+001,Hari,Hari Paudel,har@gmail.com,student
